@@ -17,6 +17,16 @@ const usuarioValidacion = Joi.object({
     ),
 });
 
+ruta.get("/", (req, res) => {
+  let resultado = listarUsuariosActivos();
+  resultado
+    .then((docs) => {
+      res.json(docs);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+});
 ruta.post("/", (req, res) => {
   let body = req.body;
   const { error, value } = usuarioValidacion.validate({
@@ -27,9 +37,10 @@ ruta.post("/", (req, res) => {
   if (!error) {
     let resultado = crearUsuario(body);
     resultado
-      .then((doc) => {
+      .then((response) => {
         res.json({
-          valor: doc,
+          nombre: response.nombre,
+          email: response.email,
         });
       })
       .catch((err) => {
@@ -43,40 +54,41 @@ ruta.post("/", (req, res) => {
     });
   }
 });
-
-ruta.put("/:id", (req, res) => {
+ruta.put("/:email", (req, res) => {
+  let email = req.params.email;
   let body = req.body;
-  let id = req.params.id;
-  let resultado = actualizarUsuario(id, body);
+  const { error, value } = usuarioValidacion.validate({
+    nombre: body.nombre,
+    password: body.password,
+  });
+  if (!error) {
+    let resultado = actualizarUsuario(email, body);
+    resultado
+      .then((response) => {
+        res.json({
+          nombre: response.nombre,
+          email: response.email,
+        });
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  } else {
+    res.status(400).json({ error: error.details[0].message });
+  }
+});
+ruta.delete("/:email", (req, res) => {
+  let email = req.params.email;
+  let resultado = eliminarUsuario(email);
   resultado
     .then((response) => {
-      res.json(response);
+      res.json({
+        nombre: response.nombre,
+        email: response.email,
+      });
     })
     .catch((err) => {
       res.status(400).json(err);
-    });
-});
-
-ruta.delete("/:id", (req, res) => {
-  let id = req.params.id;
-  let resultado = eliminarUsuario(id);
-  resultado
-    .then((response) => {
-      res.json(response);
-    })
-    .catch((err) => {
-      res.status(400).json(err);
-    });
-});
-
-ruta.get("/", (req, res) => {
-  let resultado = listarUsuariosActivos();
-  resultado
-    .then((docs) => {
-      res.json(docs);
-    })
-    .catch((err) => {
-      res.status(400).send(err);
     });
 });
 
@@ -89,9 +101,9 @@ const crearUsuario = async (body) => {
   return await usuario.save();
 };
 
-const actualizarUsuario = async (id, body) => {
-  let usuario = await usuarioModel.findByIdAndUpdate(
-    id,
+const actualizarUsuario = async (email, body) => {
+  let usuario = await usuarioModel.findOneAndUpdate(
+    { email: email },
     {
       $set: {
         nombre: body.nombre,
@@ -103,9 +115,9 @@ const actualizarUsuario = async (id, body) => {
   return usuario;
 };
 
-const eliminarUsuario = async (id) => {
-  let usuario = await usuarioModel.findByIdAndUpdate(
-    id,
+const eliminarUsuario = async (email) => {
+  let usuario = await usuarioModel.findOneAndUpdate(
+    { email: email },
     {
       $set: {
         estado: false,
@@ -117,7 +129,9 @@ const eliminarUsuario = async (id) => {
 };
 
 const listarUsuariosActivos = async () => {
-  let usuarios = await usuarioModel.find({ estado: true });
+  let usuarios = await usuarioModel
+    .find({ estado: true })
+    .select({ nombre: 1, email: 1 });
   return usuarios;
 };
 
