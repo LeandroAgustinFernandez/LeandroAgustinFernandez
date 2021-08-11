@@ -2,9 +2,9 @@ const express = require("express");
 const usuarioModel = require("../models/usuario.model");
 const ruta = express.Router();
 
-ruta.get("/", async (req, res) => {
-  res.json("Listo el GET de usuarios");
-});
+// ruta.get("/", async (req, res) => {
+//   res.json("Listo el GET de usuarios");
+// });
 
 ruta.post("/", (req, res) => {
   let body = req.body;
@@ -22,10 +22,10 @@ ruta.post("/", (req, res) => {
     });
 });
 
-ruta.put("/:email", (req, res) => {
+ruta.put("/:id", (req, res) => {
   let body = req.body;
-  let email = req.params.email;
-  let resultado = actualizarUsuario(email, body);
+  let id = req.params.id;
+  let resultado = actualizarUsuario(id, body);
   resultado
     .then((response) => {
       res.json(response);
@@ -35,15 +35,26 @@ ruta.put("/:email", (req, res) => {
     });
 });
 
-ruta.delete("/:email", (req, res) => {
-  let email = req.params.email;
-  let resultado = eliminarUsuario(email);
+ruta.delete("/:id", (req, res) => {
+  let id = req.params.id;
+  let resultado = eliminarUsuario(id);
   resultado
     .then((response) => {
       res.json(response);
     })
     .catch((err) => {
       res.status(400).json(err);
+    });
+});
+
+ruta.get("/", (req, res) => {
+  let resultado = listarUsuariosActivos();
+  resultado
+    .then((docs) => {
+      res.json(docs);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
     });
 });
 
@@ -56,9 +67,9 @@ const crearUsuario = async (body) => {
   return await usuario.save();
 };
 
-const actualizarUsuario = async (email, body) => {
-  let usuario = await usuarioModel.findOneAndUpdate(
-    email,
+const actualizarUsuario = async (id, body) => {
+  let usuario = await usuarioModel.findByIdAndUpdate(
+    id,
     {
       $set: {
         nombre: body.nombre,
@@ -70,9 +81,9 @@ const actualizarUsuario = async (email, body) => {
   return usuario;
 };
 
-const eliminarUsuario = async (email) => {
-  let usuario = await usuarioModel.findOneAndUpdate(
-    email,
+const eliminarUsuario = async (id) => {
+  let usuario = await usuarioModel.findByIdAndUpdate(
+    id,
     {
       $set: {
         estado: false,
@@ -82,4 +93,10 @@ const eliminarUsuario = async (email) => {
   );
   return usuario;
 };
+
+const listarUsuariosActivos = async () => {
+  let usuarios = await usuarioModel.find({ estado: true });
+  return usuarios;
+};
+
 module.exports = ruta;
