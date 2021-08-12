@@ -1,4 +1,5 @@
 const express = require("express");
+const Bcrypt = require("bcrypt");
 const usuarioModel = require("../models/usuario.model");
 const ruta = express.Router();
 const Joi = require("joi");
@@ -104,7 +105,7 @@ const crearUsuario = async (body) => {
   let usuario = new usuarioModel({
     email: body.email,
     nombre: body.nombre,
-    password: body.password,
+    password: Bcrypt.hashSync(body.password, 10),
   });
   return await usuario.save();
 };
@@ -115,7 +116,7 @@ const actualizarUsuario = async (email, body) => {
     {
       $set: {
         nombre: body.nombre,
-        password: body.password,
+        password: Bcrypt.hashSync(body.password, 10),
       },
     },
     { new: true }
@@ -142,15 +143,5 @@ const listarUsuariosActivos = async () => {
     .select({ nombre: 1, email: 1 });
   return usuarios;
 };
-
-// const existeEmail = (email) => {
-//   let usuario = usuarioModel.findOne(email, (err, usu) => {
-//     if (err) {
-//       return false;
-//     } else if (usu) {
-//       return
-//     }
-//   });
-// };
 
 module.exports = ruta;
