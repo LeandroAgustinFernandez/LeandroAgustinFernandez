@@ -29,6 +29,14 @@ ruta.get("/", (req, res) => {
 });
 ruta.post("/", (req, res) => {
   let body = req.body;
+  usuarioModel.findOne({ email: req.body.email }, (err, usu) => {
+    if (err) {
+      return res.status(400).json({ error: `Server Error` });
+    }
+    if (usu) {
+      return res.status(400).json({ error: `El correo ya existe` });
+    }
+  });
   const { error, value } = usuarioValidacion.validate({
     nombre: body.nombre,
     password: body.password,
@@ -134,5 +142,15 @@ const listarUsuariosActivos = async () => {
     .select({ nombre: 1, email: 1 });
   return usuarios;
 };
+
+// const existeEmail = (email) => {
+//   let usuario = usuarioModel.findOne(email, (err, usu) => {
+//     if (err) {
+//       return false;
+//     } else if (usu) {
+//       return
+//     }
+//   });
+// };
 
 module.exports = ruta;
