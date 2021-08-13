@@ -1,5 +1,8 @@
 const express = require("express");
 const Bcrypt = require("bcrypt");
+const config = require("config");
+const verificarToken = require("../middlewares/auth");
+const JWT = require("jsonwebtoken");
 const usuarioModel = require("../models/usuario.model");
 const ruta = express.Router();
 const Joi = require("joi");
@@ -18,7 +21,7 @@ const usuarioValidacion = Joi.object({
     ),
 });
 
-ruta.get("/", (req, res) => {
+ruta.get("/", verificarToken, (req, res) => {
   let resultado = listarUsuariosActivos();
   resultado
     .then((docs) => {
@@ -28,7 +31,7 @@ ruta.get("/", (req, res) => {
       res.status(400).send(err);
     });
 });
-ruta.post("/", (req, res) => {
+ruta.post("/", verificarToken, (req, res) => {
   let body = req.body;
   usuarioModel.findOne({ email: req.body.email }, (err, usu) => {
     if (err) {
@@ -63,7 +66,7 @@ ruta.post("/", (req, res) => {
     });
   }
 });
-ruta.put("/:email", (req, res) => {
+ruta.put("/:email", verificarToken, (req, res) => {
   let email = req.params.email;
   let body = req.body;
   const { error, value } = usuarioValidacion.validate({
@@ -86,7 +89,7 @@ ruta.put("/:email", (req, res) => {
     res.status(400).json({ error: error.details[0].message });
   }
 });
-ruta.delete("/:email", (req, res) => {
+ruta.delete("/:email", verificarToken, (req, res) => {
   let email = req.params.email;
   let resultado = eliminarUsuario(email);
   resultado

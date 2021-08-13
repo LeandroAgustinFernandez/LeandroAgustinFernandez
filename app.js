@@ -1,10 +1,11 @@
 const usuarios = require("./routers/usuarios");
 const cursos = require("./routers/cursos");
 const auth = require("./routers/auth");
+const config = require("config");
 const express = require("express");
 const mongoose = require("mongoose");
 mongoose
-  .connect("mongodb://localhost:27017/demo", {
+  .connect(config.get("configDB.HOST"), {
     useUnifiedTopology: true,
     useNewUrlParser: true,
     useFindAndModify: false,

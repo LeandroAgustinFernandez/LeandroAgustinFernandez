@@ -1,5 +1,6 @@
 const express = require("express");
 const ruta = express.Router();
+const verificarToken = require("../middlewares/auth");
 const cursoModel = require("../models/curso.model");
 const Joi = require("joi");
 
@@ -8,7 +9,7 @@ const cursoValidacion = Joi.object({
   descripcion: Joi.string().alphanum().min(3).max(60),
 });
 
-ruta.get("/", (req, res) => {
+ruta.get("/", verificarToken, (req, res) => {
   let resultado = listarCursos();
   resultado
     .then((cursos) => {
@@ -19,7 +20,7 @@ ruta.get("/", (req, res) => {
     });
   // res.json({message:`Bienvenidos al tren`})
 });
-ruta.post("/", (req, res) => {
+ruta.post("/", verificarToken, (req, res) => {
   let body = req.body;
   const { error, value } = cursoValidacion.validate({
     titulo: body.titulo,
@@ -41,7 +42,7 @@ ruta.post("/", (req, res) => {
   }
 });
 
-ruta.put("/:id", (req, res) => {
+ruta.put("/:id", verificarToken, (req, res) => {
   let body = req.body;
   let id = req.params.id;
   const { error, value } = cursoValidacion.validate({
@@ -59,7 +60,7 @@ ruta.put("/:id", (req, res) => {
       });
   }
 });
-ruta.delete("/:id", (req, res) => {
+ruta.delete("/:id", verificarToken, (req, res) => {
   let id = req.params.id;
   let resultado = eliminarCurso(id);
   resultado
