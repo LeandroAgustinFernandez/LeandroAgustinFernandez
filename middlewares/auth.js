@@ -7,8 +7,9 @@ let verificarToken = (req, res, next) => {
     if (err) {
       return res.status(401).json(err);
     }
+    // console.log(decoded);
     // res.send(token);
-    req.usuario = decoded.usuario;
+    req.data = decoded.data;
     next();
   });
 };

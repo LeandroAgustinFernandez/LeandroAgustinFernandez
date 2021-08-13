@@ -10,6 +10,7 @@ const cursoValidacion = Joi.object({
 });
 
 ruta.get("/", verificarToken, (req, res) => {
+  // res.json(req.data);
   let resultado = listarCursos();
   resultado
     .then((cursos) => {
@@ -21,10 +22,10 @@ ruta.get("/", verificarToken, (req, res) => {
   // res.json({message:`Bienvenidos al tren`})
 });
 ruta.post("/", verificarToken, (req, res) => {
-  let body = req.body;
+  let body = req;
   const { error, value } = cursoValidacion.validate({
-    titulo: body.titulo,
-    descripcion: body.descripcion,
+    titulo: req.body.titulo,
+    descripcion: req.body.descripcion,
   });
   if (!error) {
     let resultado = crearCurso(body);
@@ -72,10 +73,11 @@ ruta.delete("/:id", verificarToken, (req, res) => {
     });
 });
 
-const crearCurso = async (body) => {
+const crearCurso = async (req) => {
   let curso = new cursoModel({
-    titulo: body.titulo,
-    descripcion: body.descripcion,
+    titulo: req.body.titulo,
+    autor: req.data._id,
+    descripcion: req.body.descripcion,
   });
   return await curso.save();
 };
@@ -97,9 +99,7 @@ const actualizarCurso = async (id, body) => {
 };
 const eliminarCurso = async (id) => {
   let curso = await cursoModel.findByIdAndUpdate(
-    {
-      _id: id,
-    },
+    { _id: id },
     {
       $set: {
         estado: false,
@@ -110,7 +110,7 @@ const eliminarCurso = async (id) => {
   return curso;
 };
 const listarCursos = async () => {
-  let cursos = await cursoModel.find();
+  let cursos = await cursoModel.find().populate("autor", "nombre -_id"); //simbolo menos para excluir
   return cursos;
 };
 

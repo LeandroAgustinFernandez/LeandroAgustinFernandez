@@ -30,7 +30,7 @@ ruta.post("/", (req, res) => {
         // );
         const jsonwebtoken = JWT.sign(
           {
-            data: {
+            usuario: {
               _id: datos._id,
               nombre: datos.nombre,
               email: datos.email,
