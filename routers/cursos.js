@@ -76,7 +76,8 @@ ruta.delete("/:id", verificarToken, (req, res) => {
 const crearCurso = async (req) => {
   let curso = new cursoModel({
     titulo: req.body.titulo,
-    autor: req.data._id,
+    autor: req.data._id, //POR REFERENCIA
+    // autor: req.data, //DOC EMBEBIDO
     descripcion: req.body.descripcion,
   });
   return await curso.save();
@@ -84,9 +85,7 @@ const crearCurso = async (req) => {
 
 const actualizarCurso = async (id, body) => {
   let curso = await cursoModel.findByIdAndUpdate(
-    {
-      _id: id,
-    },
+    { _id: id },
     {
       $set: {
         titulo: body.titulo,
@@ -111,6 +110,7 @@ const eliminarCurso = async (id) => {
 };
 const listarCursos = async () => {
   let cursos = await cursoModel.find().populate("autor", "nombre -_id"); //simbolo menos para excluir
+  // let cursos = await cursoModel.find(); //DOC EMBEBIDO
   return cursos;
 };
 
