@@ -1,6 +1,6 @@
 <h1 align="center">¡Hola! 👋 Soy Leandro Fernández.</h1>
 <h3 align="center">FrontEnd Developer y Constante Aprendiz </h3>
-<div style="width:100%;height:0;padding-bottom:75%;position:relative;"><img src="https://i.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.webp" width="100%" height="100%" style="position:absolute" frameBorder="0"></img></div>
+<img align="left" src="https://i.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.webp" width="50%" height="50%"  frameBorder="0"/>
 
 - 📚 Actualmente estudiando BackEnd con Node.js
 
