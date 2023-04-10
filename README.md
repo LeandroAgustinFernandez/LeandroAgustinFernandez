@@ -37,3 +37,5 @@
 </div>
 
 ![GitHub stats](https://github-readme-stats.vercel.app/api?username=LeandroAgustinFernandez&show_icons=true&theme=prussian)
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=LeandroAgustinFernandez&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
