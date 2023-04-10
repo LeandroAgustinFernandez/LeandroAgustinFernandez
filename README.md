@@ -10,3 +10,5 @@
 - 🔍 Soy una persona autodidacta, siempre buscando ampliar mis conocimientos.
 
 - 📫 Podes enviarme un correo a **leandroa.fernandez@gmail.com**
+
+- <img src="./linkedin.png" alt="LinkedIn Logo" width="30px"> [![Leandro Fernández](https://www.linkedin.com/in/leandro-agustín-fernández/)](https://www.linkedin.com/in/leandro-agustín-fernández/)
