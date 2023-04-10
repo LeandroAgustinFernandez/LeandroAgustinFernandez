@@ -15,7 +15,8 @@
 - 📫 Podes enviarme un correo a **leandroa.fernandez@gmail.com**
 
 - <img src="linkedin.png" alt="LinkedIn Logo" width="15px"> Contactame en [![Leandro Fernández](https://www.linkedin.com/in/leandro-agustín-fernández/)](https://www.linkedin.com/in/leandro-agustín-fernández/)
-
+<br />
+<br />
 <h3>Lenguajes y herramientas</h3>
 <p align="left">
 <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML" width="40px" height="40px">
