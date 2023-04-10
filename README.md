@@ -19,7 +19,7 @@
 
 
 ### Lenguajes y herramientas
-<p align="left">
+<p align="left" style="margin-top: 2rem">
 <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML" width="40px" height="40px">
 <img src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original.svg" title="CSS" alt="CSS" width="40px" height="40px">
 <img src="https://github.com/devicons/devicon/blob/master/icons/bootstrap/bootstrap-original.svg" title="Bootstrap" alt="Bootstrap" width="40px" height="40px">
