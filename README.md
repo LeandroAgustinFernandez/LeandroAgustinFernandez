@@ -19,5 +19,7 @@
 <img src="https://github.com/devicons/devicon/tree/master/icons/html5" title="HTML5" alt="HTML" width="40px" height="40px">
 
 <div align="center">
-[![GitHub Streak](http://github-readme-streak-stats.herokuapp.com?user=LeandroAgustinFernandez&theme=prussian&locale=es)](https://git.io/streak-stats)
+
+[![GitHub Streak](http://github-readme-streak-stats.herokuapp.com?user=LeandroAgustinFernandez&theme=prussian&border_radius=5&locale=es)](https://git.io/streak-stats) 
+
 </div>
