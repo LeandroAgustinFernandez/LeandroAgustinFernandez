@@ -11,4 +11,4 @@
 
 - 📫 Podes enviarme un correo a **leandroa.fernandez@gmail.com**
 
-- <img src="linkedin.png" alt="LinkedIn Logo" width="30px"> [![Leandro Fernández](https://www.linkedin.com/in/leandro-agustín-fernández/)](https://www.linkedin.com/in/leandro-agustín-fernández/)
+- <img src="linkedin.png" alt="LinkedIn Logo" width="15px"> [![Leandro Fernández](https://www.linkedin.com/in/leandro-agustín-fernández/)](https://www.linkedin.com/in/leandro-agustín-fernández/)
