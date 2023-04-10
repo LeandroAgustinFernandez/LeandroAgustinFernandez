@@ -16,6 +16,8 @@
 
 ### Lenguajes y herramientas
 
+<img src="https://github.com/devicons/devicon/tree/master/icons/html5" title="HTML5" alt="HTML" width="40px" height="40px">
 
-
-[![GitHub Streak](http://github-readme-streak-stats.herokuapp.com?user=LeandroAgustinFernandez&theme=dark)](https://git.io/streak-stats)
+<div align="center">
+[![GitHub Streak](http://github-readme-streak-stats.herokuapp.com?user=LeandroAgustinFernandez&theme=prussian&locale=es)](https://git.io/streak-stats)
+</div>
