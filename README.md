@@ -16,7 +16,7 @@
 
 ### Lenguajes y herramientas
 
-<img src="https://github.com/devicons/devicon/tree/master/icons/html5" title="HTML5" alt="HTML" width="40px" height="40px">
+<img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML" width="40px" height="40px">
 
 <div align="center">
 
