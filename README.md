@@ -16,7 +16,6 @@
 
 - <img src="linkedin.png" alt="LinkedIn Logo" width="15px"> Contactame en [![Leandro Fernández](https://www.linkedin.com/in/leandro-agustín-fernández/)](https://www.linkedin.com/in/leandro-agustín-fernández/)
 <br />
-<br />
 <h3>Lenguajes y herramientas</h3>
 <p align="left">
 <img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" title="HTML5" alt="HTML" width="40px" height="40px">
@@ -30,9 +29,11 @@
 <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original.svg" title="MYSQL" alt="MYSQL" width="40px" height="40px">
 <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg" title="Git" alt="Git" width="40px" height="40px">
 </p>
-
+<br />
 <div align="center">
 
 [![GitHub Streak](http://github-readme-streak-stats.herokuapp.com?user=LeandroAgustinFernandez&theme=prussian&border_radius=5&locale=es)](https://git.io/streak-stats) 
 
 </div>
+
+![GitHub stats](https://github-readme-stats.vercel.app/api?username=LeandroAgustinFernandez&show_icons=true&theme=prussian)
